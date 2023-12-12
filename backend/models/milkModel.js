@@ -10,11 +10,11 @@ const orderSchema = mongoose.Schema({
         required: true,
     },
     orderDate: {
-        type: Number,
+        type: Date,
         required: true,
     },
 }, {
     timestamps: true,
 });
 
-export const Order = mongoose.model('cat', orderSchema);
+export const Order = mongoose.model('order', orderSchema);

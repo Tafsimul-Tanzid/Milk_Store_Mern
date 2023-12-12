@@ -8,6 +8,7 @@ const router = express.Router();
 //Route for save data
 router.post("/", async (req, res) => {
     try {
+       // console.log("Before conversion:", req.body.orderDate);
         if (!req.body.name || !req.body.orderDate || !req.body.amount) {
             return res.status(400).send({
                 message: "Fill out All required fields: name,amount,orderDate",
@@ -16,8 +17,9 @@ router.post("/", async (req, res) => {
         const newOrder = {
             name: req.body.name,
             amount: req.body.amount,
-            orderDate: req.body.orderDate,
+            orderDate: new Date(req.body.orderDate),
         };
+       // console.log("After conversion:", newOrder.orderDate);
         const Orders = await Order.create(newOrder);
         return res.status(201).send(Orders);
     } catch (error) {
